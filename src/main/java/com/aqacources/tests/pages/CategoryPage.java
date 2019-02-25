@@ -16,7 +16,7 @@ public class CategoryPage extends AbstractPage {
     @FindBy(xpath = "//ul[@class='tree dynamized']/li/a[contains(text(), 'Summer Dresses')]")
     WebElement menuSummerDresses;
 
-    @FindBy(xpath = "//a[contains(text(),'White')]/span")
+    @FindBy(xpath = "//input[@style='background: #ffffff;']")
     WebElement filterColorWhite;
 
     @FindBy(xpath = "//div[@class='product-container']")
@@ -25,8 +25,7 @@ public class CategoryPage extends AbstractPage {
     @FindBy(xpath = "//h1[@class='page-heading product-listing']/span[@class='heading-counter']")
     WebElement productCounter;
 
-    @FindBy(xpath = "//div[@id = 'layered_ajax_loader']")
-    WebElement loading;
+    private boolean isFilterSelected = false;
 
     /**
      * Constructor
@@ -49,8 +48,9 @@ public class CategoryPage extends AbstractPage {
      * click to filter color White
      */
     public void clickFilterColorWhite() {
-        testClass.waitTillElementIsClickable(filterColorWhite);
+        testClass.waitTillElementIsVisible(filterColorWhite);
         filterColorWhite.click();
+        isFilterSelected = true;
     }
 
     /**
@@ -58,15 +58,15 @@ public class CategoryPage extends AbstractPage {
      */
     public void compareProductAmounts() {
 
-        testClass.waitTillElementIsInvisible(loading);
+        if (isFilterSelected) {
+            testClass.waitUntillDataIsLoad();
+        }
 
         // get product amount from message on the page
         String productCounterAmount = productCounter.getText().replaceAll("[^\\d]", "");
 
         int productCounterValue = Integer.parseInt(productCounterAmount);
-        System.out.println(productCounterAmount);
 
         Assert.assertEquals(productContainer.size(), productCounterValue);
-
     }
 }

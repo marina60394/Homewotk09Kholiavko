@@ -32,7 +32,6 @@ public class GetProductsAmountTest extends BaseTest {
         // compare product amount from message and products
         categoryPage.compareProductAmounts();
 
-
         // click to filter color White
         categoryPage.clickFilterColorWhite();
 

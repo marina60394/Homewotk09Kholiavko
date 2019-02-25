@@ -2,6 +2,7 @@ package com.aqacources.tests.base;
 
 import com.aqacources.tests.pages.HomePage;
 import com.aqacources.tests.utils.YamlParser;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,9 @@ public class BaseTest {
     // Instance of WebDriver
     private WebDriver driver;
     private WebDriverWait wait;
+
+    // Product loader element
+    private final static String LOADING_PRODUCT = "//ul[@class=\'product_list grid row\']/p[1]";
 
     /**
      * Constructor
@@ -66,22 +70,14 @@ public class BaseTest {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    /**
-     * Wait till element is clickable
-     *
-     * @param element
-     */
-    public void waitTillElementIsClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
 
     /**
-     * Wait till element is invisible
-     *
-     * @param element
+     * Wait that element is visible and then invisible
      */
-    public void waitTillElementIsInvisible(WebElement element) {
-        wait.until(ExpectedConditions.invisibilityOf(element));
+    public void waitUntillDataIsLoad() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LOADING_PRODUCT)));
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(LOADING_PRODUCT)));
     }
 
 }
