@@ -20,7 +20,7 @@ public class BaseTest {
     private WebDriverWait wait;
 
     // Product loader element
-    private final static String LOADING_PRODUCT = "//ul[@class=\'product_list grid row\']/p[1]";
+    private final static String LOADING_PRODUCT = "//ul[@class='product_list grid row']/p";
 
     /**
      * Constructor
