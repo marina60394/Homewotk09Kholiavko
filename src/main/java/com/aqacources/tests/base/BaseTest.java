@@ -72,11 +72,9 @@ public class BaseTest {
 
 
     /**
-     * Wait that element is visible and then invisible
+     * Wait till Loadet isn't present
      */
-    public void waitUntillDataIsLoad() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LOADING_PRODUCT)));
-
+    public void waitTillLoaderIsNotPresent() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(LOADING_PRODUCT)));
     }
 

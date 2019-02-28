@@ -1,10 +1,7 @@
 package com.aqacources.tests.tests;
 
 import com.aqacources.tests.base.BaseTest;
-import com.aqacources.tests.pages.CategoryPage;
-import com.aqacources.tests.pages.HomePage;
-import com.aqacources.tests.pages.LoginPage;
-import com.aqacources.tests.pages.MyAccoutPage;
+import com.aqacources.tests.pages.*;
 import org.junit.Test;
 
 /**
@@ -24,19 +21,19 @@ public class GetProductsAmountTest extends BaseTest {
         MyAccoutPage myAccoutPage = loginPage.signIn();
 
         // click to Menu Dresses
-        CategoryPage categoryPage = myAccoutPage.clickMenuDresses();
+        DressesPage dressesPage = myAccoutPage.clickMenuDresses();
 
-        // click to Summer Dressses
-        categoryPage.clickmenuSummerDresses();
+        //  Click to Summer Dresses
+        SummerDressesPage summerDressesPage = dressesPage.clickmenuSummerDresses();
 
         // compare product amount from message and products
-        categoryPage.compareProductAmounts();
+        summerDressesPage.compareProductAmounts();
 
         // click to filter color White
-        categoryPage.clickFilterColorWhite();
+        summerDressesPage.clickFilterColorWhite();
 
         // compare product amount from message and products
-        categoryPage.compareProductAmounts();
+        summerDressesPage.compareProductAmounts();
 
         closeSite();
 

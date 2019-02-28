@@ -8,40 +8,27 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 /**
- * Created by Marina on 24.02.2019.
+ * Created by Marina on 28.02.2019.
  */
-public class CategoryPage extends AbstractPage {
+public class SummerDressesPage extends AbstractPage {
 
-    // Web elements
-    @FindBy(xpath = "//ul[@class='tree dynamized']/li/a[contains(text(), 'Summer Dresses')]")
-    WebElement menuSummerDresses;
-
+    // Web Elements
     @FindBy(xpath = "//input[@style='background: #ffffff;']")
-    WebElement filterColorWhite;
+    private WebElement filterColorWhite;
 
     @FindBy(xpath = "//div[@class='product-container']")
-    List <WebElement> productContainer;
+    private List <WebElement> productContainer;
 
     @FindBy(xpath = "//h1[@class='page-heading product-listing']/span[@class='heading-counter']")
-    WebElement productCounter;
-
-    private boolean isFilterSelected = false;
+    private WebElement productCounter;
 
     /**
      * Constructor
      *
      * @param testClass
      */
-    public CategoryPage(BaseTest testClass) {
+    public SummerDressesPage(BaseTest testClass) {
         super(testClass);
-    }
-
-    /**
-     * click to menu Dressses
-     */
-    public void clickmenuSummerDresses() {
-        testClass.waitTillElementIsVisible(menuSummerDresses);
-        menuSummerDresses.click();
     }
 
     /**
@@ -50,17 +37,14 @@ public class CategoryPage extends AbstractPage {
     public void clickFilterColorWhite() {
         testClass.waitTillElementIsVisible(filterColorWhite);
         filterColorWhite.click();
-        isFilterSelected = true;
+
+        testClass.waitTillLoaderIsNotPresent();
     }
 
     /**
      * verify that product amount from the message is the same with the amount of products on the page
      */
     public void compareProductAmounts() {
-
-        if (isFilterSelected) {
-            testClass.waitUntillDataIsLoad();
-        }
 
         // get product amount from message on the page
         String productCounterAmount = productCounter.getText().replaceAll("[^\\d]", "");
